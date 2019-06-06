@@ -9,8 +9,16 @@
 import SwiftUI
 
 struct ContentView : View {
+    
+    @State var isOn: Bool = false
+    
     var body: some View {
-        Text("Hello World")
+        VStack(alignment: .center, spacing: 16) {
+            Text("Hello World").navigationBarTitle(Text("Title"))
+            Button(action: {}, label: { Text("Button") })
+            Toggle(isOn: $isOn, label: { Text("Toggle") })
+            PresentationButton(Text("Present"), destination: DetailView())
+        }.padding(16)
     }
 }
 
@@ -21,3 +29,14 @@ struct ContentView_Previews : PreviewProvider {
     }
 }
 #endif
+
+struct DetailView : View {
+
+    var body: some View {
+        VStack {
+            Text("Detail")
+            Button(action: {}, label: { Text("Dismiss") })
+        }
+    }
+}
+

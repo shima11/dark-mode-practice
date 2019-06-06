@@ -20,28 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Use a UIHostingController as window root view controller
-        
         let window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let tabBarController = UITabBarController()
-        
-        let uikitViewController = ViewController()
-        let navigationUIKitVC = UINavigationController(rootViewController: uikitViewController)
-        navigationUIKitVC.tabBarItem = .init(title: "UIKit", image: nil, selectedImage: nil)
-
-        let swiftuiViewController = UIHostingController(rootView: NavigationView.init(root: { ContentView() }))
-        swiftuiViewController.tabBarItem = .init(title: "SwiftUI", image: nil, selectedImage: nil)
-        
-        tabBarController.setViewControllers(
-            [
-                navigationUIKitVC,
-                swiftuiViewController
-            ],
-            animated: false
-        )
-        
-        window.rootViewController = tabBarController
-        
+        window.rootViewController = UIHostingController(rootView: ContentView())
         self.window = window
         window.makeKeyAndVisible()
     }
