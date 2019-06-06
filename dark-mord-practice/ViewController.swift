@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 class ViewController: UIViewController {
-    
-//    override var overrideUserInterfaceStyle: UIUserInterfaceStyle {
-//        return .dark
-//    }
+
+//    override var overrideUserInterfaceStyle: UIUserInterfaceStyle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .systemBackground
         
     }
     
