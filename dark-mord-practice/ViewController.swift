@@ -59,13 +59,19 @@ class ViewController: UIViewController {
         slider.thumbTintColor = .systemGroupedBackground
         slider.tintColor = .systemGray
         
+        let button = UIButton()
+        button.setTitle("Button", for: .normal)
+        button.setTitleColor(.systemOrange, for: .normal)
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
         let stackView = UIStackView(arrangedSubviews: [
             label,
             segment,
             activity,
             stepper,
             switchView,
-            slider
+            slider,
+            button
             ])
         stackView.spacing = 24
         stackView.alignment = .center
@@ -84,11 +90,31 @@ class ViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        // environment overrides で Interface Style を変更すると呼ばれるが、break pointには反応しないので注意。
         
+        guard let trait = previousTraitCollection else { return }
+        
+        switch trait.userInterfaceStyle {
+        case .dark:
+            break
+        case .light:
+            break
+        case .unspecified:
+            break
+        @unknown default:
+            break
+        }
+        
+        print("traitCollectionDidChange:", trait.userInterfaceStyle)
+
     }
     
 }
 
 class DetailViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+    }
 }
