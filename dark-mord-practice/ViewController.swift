@@ -11,13 +11,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-//    override var overrideUserInterfaceStyle: UIUserInterfaceStyle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Title"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor.init(named: "Color1")
+        
+        let label = UILabel()
+        label.text = "Label"
+        label.textColor = UIColor.systemGray2
+        label.layer.backgroundColor = UIColor.systemBackground.cgColor
         
         let segment = UISegmentedControl(items: [
             "Tokyo", "SanJose", "Korean"
@@ -35,7 +38,6 @@ class ViewController: UIViewController {
         stepper.maximumValue = 100
         stepper.minimumValue = 0
         stepper.largeContentTitle = "title"
-//        stepper.addTarget(self, action: #selector(didChangeStepperValue(sender:)), for: .valueChanged)
         stepper.tintColor = .darkGray
         stepper.backgroundColor = .lightGray
         stepper.autorepeat = true
@@ -44,20 +46,21 @@ class ViewController: UIViewController {
         stepper.clipsToBounds = true
         
         let switchView = UISwitch()
-        switchView.tintColor = .darkGray
+        switchView.tintColor = .systemGray
         switchView.backgroundColor = .clear
-        switchView.onTintColor = .orange
+        switchView.onTintColor = .systemOrange
         switchView.thumbTintColor = .systemGroupedBackground
         
         let slider = UISlider()
         slider.maximumValue = 100
         slider.minimumValue = 0
-        slider.minimumTrackTintColor = .lightGray
-        slider.maximumTrackTintColor = .darkGray
+        slider.minimumTrackTintColor = .systemGray6
+        slider.maximumTrackTintColor = .systemGray2
         slider.thumbTintColor = .systemGroupedBackground
-        slider.tintColor = .darkGray
+        slider.tintColor = .systemGray
         
         let stackView = UIStackView(arrangedSubviews: [
+            label,
             segment,
             activity,
             stepper,
@@ -75,11 +78,14 @@ class ViewController: UIViewController {
         
     }
     
-    @objc func didTapButton() {
-        
+    @objc func didTapButton() {        
         present(DetailViewController(), animated: true, completion: nil)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+    }
     
 }
 

@@ -26,6 +26,7 @@
 		D410BA5722A7997000D66872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D410BA5922A7997000D66872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D410BA5F22A839DF00D66872 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D428577A22B1F43500D6A733 /* dynamic-color.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "dynamic-color.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +43,7 @@
 		D410BA3F22A7996E00D66872 = {
 			isa = PBXGroup;
 			children = (
+				D428577A22B1F43500D6A733 /* dynamic-color.playground */,
 				D410BA4A22A7996E00D66872 /* dark-mord-practice */,
 				D410BA4922A7996E00D66872 /* Products */,
 			);
