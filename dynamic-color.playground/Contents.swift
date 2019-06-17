@@ -2,21 +2,15 @@ import UIKit
 
 enum AppColor {
     static let dynamicRed = UIColor.init(dynamicProvider: { trait in
-        
-        let lightRed = UIColor.init(red: 0.6, green: 0, blue: 0, alpha: 1)
-        let darkRed = UIColor.init(red: 0.8, green: 0, blue: 0, alpha: 1)
-        let highContrastLightRed = UIColor.init(red: 0.7, green: 0, blue: 0, alpha: 1)
-        let highContrastDarkRed = UIColor.init(red: 0.9, green: 0, blue: 0, alpha: 1)
-
         switch (trait.userInterfaceStyle, trait.accessibilityContrast) {
         case (.light, .normal):
-            return lightRed
+            return UIColor.init(red: 0.6, green: 0, blue: 0, alpha: 1)
         case (.light, .high):
-            return highContrastLightRed
+            return UIColor.init(red: 0.7, green: 0, blue: 0, alpha: 1)
         case (.dark, .normal):
-            return darkRed
+            return UIColor.init(red: 0.8, green: 0, blue: 0, alpha: 1)
         case (.dark, .high):
-            return highContrastDarkRed
+            return UIColor.init(red: 0.9, green: 0, blue: 0, alpha: 1)
         default:
             fatalError()
         }
@@ -39,4 +33,3 @@ checkColor(traitCollection: trait1)
 checkColor(traitCollection: trait2)
 checkColor(traitCollection: trait3)
 checkColor(traitCollection: trait4)
-

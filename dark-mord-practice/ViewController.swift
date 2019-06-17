@@ -13,12 +13,12 @@ import UIKit
 // https://developer.apple.com/documentation/appkit/supporting_dark_mode_in_your_interface
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Title"
-
+        
         // AssetCatalogでColorSetを定義した場合
         view.backgroundColor = UIColor.init(named: "Color1")
         
@@ -102,21 +102,27 @@ class ViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         // environment overrides で Interface Style を変更すると呼ばれるが、break pointには反応しないので注意。
         
-        guard let trait = previousTraitCollection else { return }
-        
-        switch trait.userInterfaceStyle {
-        case .dark:
-            break
-        case .light:
-            break
-        case .unspecified:
-            break
-        @unknown default:
-            break
-        }
-        
         print("viewconroller traitCollectionDidChange")
 
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+
+            print("changed")
+            
+            // hasDifferentColorAppearanceを呼んで色に関して変更があるかどうかを確認
+            
+            guard let trait = previousTraitCollection else { return }
+            
+            switch trait.userInterfaceStyle {
+            case .dark:
+                break
+            case .light:
+                break
+            case .unspecified:
+                break
+            @unknown default:
+                break
+            }
+        }
     }
     
 }
@@ -151,8 +157,32 @@ class CustomView: UIView {
 
 class DetailViewController: UIViewController {
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        overrideUserInterfaceStyle = .dark
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        present(EditViewController(), animated: true, completion: nil)
+        
+    }
+}
+
+class EditViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
 }
