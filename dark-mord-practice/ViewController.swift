@@ -9,12 +9,17 @@
 import Foundation
 import UIKit
 
+
+// https://developer.apple.com/documentation/appkit/supporting_dark_mode_in_your_interface
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Title"
+
+        // AssetCatalogでColorSetを定義した場合
         view.backgroundColor = UIColor.init(named: "Color1")
         
         let label = UILabel()
@@ -64,6 +69,10 @@ class ViewController: UIViewController {
         button.setTitleColor(.systemOrange, for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
+        let customView = CustomView()
+        customView.frame = .init(x: 0, y: 0, width: 100, height: 100)
+        customView.backgroundColor = .systemBlue
+        
         let stackView = UIStackView(arrangedSubviews: [
             label,
             segment,
@@ -71,7 +80,8 @@ class ViewController: UIViewController {
             stepper,
             switchView,
             slider,
-            button
+            button,
+            customView
             ])
         stackView.spacing = 24
         stackView.alignment = .center
@@ -105,8 +115,36 @@ class ViewController: UIViewController {
             break
         }
         
-        print("traitCollectionDidChange:", trait.userInterfaceStyle)
+        print("viewconroller traitCollectionDidChange")
 
+    }
+    
+}
+
+class CustomView: UIView {
+    
+    class ContentView: UIView {
+        
+        override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+            super.traitCollectionDidChange(previousTraitCollection)
+            print("content view traitCollectionDidChange")
+        }
+    }
+    
+    init() {
+        super.init(frame: .zero)
+        
+        let view = ContentView()
+        addSubview(view)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        print("custom view traitCollectionDidChange")
     }
     
 }
