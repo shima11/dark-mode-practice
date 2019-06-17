@@ -12,6 +12,24 @@ import UIKit
 
 // https://developer.apple.com/documentation/appkit/supporting_dark_mode_in_your_interface
 
+enum AppColor {
+    static let dynamicRed = UIColor.init(dynamicProvider: { trait in
+        print("dynamicProvider")
+        switch (trait.userInterfaceStyle, trait.accessibilityContrast) {
+        case (.light, .normal):
+            return UIColor.init(red: 0.6, green: 0, blue: 0, alpha: 1)
+        case (.light, .high):
+            return UIColor.init(red: 0.7, green: 0, blue: 0, alpha: 1)
+        case (.dark, .normal):
+            return UIColor.init(red: 0.8, green: 0, blue: 0, alpha: 1)
+        case (.dark, .high):
+            return UIColor.init(red: 0.9, green: 0, blue: 0, alpha: 1)
+        default:
+            fatalError()
+        }
+    })
+}
+
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -109,7 +127,8 @@ class ViewController: UIViewController {
             print("changed")
             
             // hasDifferentColorAppearanceを呼んで色に関して変更があるかどうかを確認
-            
+            // userInterfaceIdiom、userInterfaceStyle、displayGamut、accessibilityContrast、userInterfaceLevelは色を変更させる可能性がある。
+
             guard let trait = previousTraitCollection else { return }
             
             switch trait.userInterfaceStyle {
@@ -183,6 +202,6 @@ class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AppColor.dynamicRed
     }
 }
